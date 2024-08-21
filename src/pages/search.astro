@@ -1,10 +1,10 @@
 ---
-import SingleColumnLayout, {
-  type Props as SingleColumnLayoutProps
-} from '~/layouts/single.astro'
+import DoubleColumnLayout, {
+  type Props as DoubleColumnLayoutProps
+} from '~/layouts/double.astro'
 import Article from '~/components/article/article.astro'
-import SearchBar from '~/widgets/search.astro'
-import List from '~/components/list.astro'
+import Result from '~/components/search/result.astro'
+import NoResult from '~/components/search/no-result.astro'
 import { getCollection } from 'astro:content'
 import Fuse from 'fuse.js'
 
@@ -24,28 +24,16 @@ const query = Astro.url.searchParams.get('q')
 const result = fuse.search(query || '')
 
 const page = {
-  title: 'Pencarian',
-  description: 'Halaman pencarian Artikel'
-} satisfies SingleColumnLayoutProps
+  title: 'Search',
+  description: `Search results page of query: ${query}`
+} satisfies DoubleColumnLayoutProps
 
 export const prerender = false
 ---
 
-<SingleColumnLayout {...page}>
+<DoubleColumnLayout {...page}>
   <Article title={page.title} class='mx-auto prose-h1:mb-4'>
-    <SearchBar value={query || ''} />
-    {
-      query && (
-        <>
-          <p>
-            Hasil pencarian dengan kata kunci{' '}
-            <span class='italic underline'>"{query}"</span>:
-          </p>
-          <hr />
-        </>
-      )
-    }
-
-    <List posts={result.map(({ item }) => item)} />
+    {query && result.length > 0 && <Result query={query} result={result} />}
+    {result.length <= 0 && <NoResult query={query || ''} />}
   </Article>
-</SingleColumnLayout>
+</DoubleColumnLayout>

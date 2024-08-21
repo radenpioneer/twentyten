@@ -46,7 +46,7 @@ const preloadHeaderImage = post.data.image
 
     {/* content */}
     <Content />
-    <ArticleTags tags={post.data.tags} class='mt-auto' />
+    {post.data.tags && <ArticleTags tags={post.data.tags} class='mt-auto' />}
   </Article>
 
   {/* head */}

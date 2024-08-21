@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import type { FuseResult } from 'fuse.js'
+import List from '~/components/list.astro'
+
+interface Props {
+  query: string
+  result: Array<FuseResult<CollectionEntry<'posts'>>>
+}
+
+const { query, result } = Astro.props
+---
+
+<Fragment>
+  <p>
+    Search results for:{' '}
+    <span class='italic underline'>"{query}"</span>
+  </p>
+  <hr />
+
+  <List posts={result.map(({ item }) => item)} />
+</Fragment>

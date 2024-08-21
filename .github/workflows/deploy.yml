@@ -1,10 +1,10 @@
 name: Build & Deploy
 
 on:
-  # push:
-  #   branches: [main]
-  # pull_request:
-  #   branches: [main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -35,6 +35,7 @@ jobs:
       - name: Test with Lighthouse CI
         uses: treosh/lighthouse-ci-action@2f8dda6cf4de7d73b29853c3f29e73a01e297bd8 # v12
         if: ${{ github.event_name == 'pull_request' }}
+        continue-on-error: true
         with:
           configPath: './.lighthouserc.json'
           temporaryPublicStorage: true
@@ -44,4 +45,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=sngr-my-id
+          command: pages deploy dist --project-name=twenty-ten

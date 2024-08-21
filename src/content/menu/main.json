@@ -1,0 +1,18 @@
+{
+  "$schema": "../../../.astro/collections/menu.schema.json",
+  "title": "Main",
+  "description": "Main menu.",
+  "items": [
+    {
+      "discriminant": "link",
+      "value": {
+        "title": "Home",
+        "url": "/"
+      }
+    },
+    {
+      "discriminant": "page",
+      "value": "top-level-page"
+    }
+  ]
+}

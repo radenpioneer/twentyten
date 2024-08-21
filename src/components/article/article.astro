@@ -1,6 +1,5 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
-import '@fontsource-variable/crimson-pro'
 
 interface Props extends HTMLAttributes<'article'> {
   title: string
@@ -13,9 +12,9 @@ const { title, class: className, link, type = 'page', ...props } = Astro.props
 
 <article
   class:list={[
-    'font-article prose prose-zinc prose-p:text-lg prose-p:leading-snug prose-a:no-underline hover:prose-a:underline',
-    { 'prose-h1:font-body prose-h1:mb-2': type === 'page' },
-    { 'prose-h2:font-body prose-h2:mb-1 prose-h2:mt-0': type === 'card' },
+    'prose prose-zinc font-serif prose-p:text-lg prose-a:no-underline hover:prose-a:underline',
+    { 'prose-h1:mb-2 prose-h1:font-sans': type === 'page' },
+    { 'prose-h2:mb-1 prose-h2:mt-0 prose-h2:font-sans': type === 'card' },
     className
   ]}
   ,
