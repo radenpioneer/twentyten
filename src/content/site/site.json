@@ -1,9 +1,9 @@
 {
   "$schema": "../../../.astro/collections/site.schema.json",
-  "title": "R. Ilham Sastronegoro",
-  "slogan": "menulislah, kelak dunia akan menulismu.",
-  "description": "Blog pribadi R. Ilham Sastronegoro, berisi catatan dan tulisan non-work-related. Ditulis menggunakan Bahasa Indonesia.",
-  "lang": "id",
-  "image": "~/assets/site/image.png",
+  "title": "Twenty Ten",
+  "slogan": "Just another Astro site. Feel nostalgic? Use this theme.",
+  "description": "The demo of Astro's Twenty Ten theme, basically the modern copy of Wordpress' Twenty Ten theme.",
+  "lang": "en",
+  "image": "~/assets/site/image.jpg",
   "favicon": "/favicon.svg"
 }

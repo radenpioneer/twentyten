@@ -10,16 +10,16 @@ export interface Props {
 }
 
 const { site, image } = Astro.props
-const menuData = await getEntry('menu', 'utama')
+const menuData = await getEntry('menu', 'main')
 const menu = await transformMenu(menuData)
 ---
 
 <nav class='mx-auto w-full bg-zinc-50 px-4 py-4 [max-width:1024px]'>
   <div
-    class='mb-4 flex flex-col justify-between gap-y-1 md:flex-row md:items-center'
+    class='mb-4 flex flex-col justify-between gap-y-1 md:flex-row md:items-baseline'
   >
     <a class='text-xl font-black md:text-2xl' href='/'>{site.data.title}</a>
-    <div class='font-serif text-sm italic text-zinc-600'>
+    <div class='max-w-[12rem] font-serif text-sm italic text-zinc-600'>
       {site.data.slogan}
     </div>
   </div>
