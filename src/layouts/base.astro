@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+export interface Props extends HTMLAttributes<'body'> {
+  lang?: string | null | undefined
+}
+
+const { lang, ...props } = Astro.props
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width' />
+    <meta name='generator' content={Astro.generator} />
+    <slot name='head' />
+  </head>
+  <body {...props}>
+    <slot />
+  </body>
+</html>

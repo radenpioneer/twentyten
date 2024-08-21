@@ -1,0 +1,6 @@
+{
+  "astro.content-intellisense": true,
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///workspace/empty/.github/workflows/deploy.yml"
+  }
+}

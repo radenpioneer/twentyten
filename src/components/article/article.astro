@@ -1,0 +1,39 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import '@fontsource-variable/crimson-pro'
+
+interface Props extends HTMLAttributes<'article'> {
+  title: string
+  link?: string
+  type?: 'page' | 'card'
+}
+
+const { title, class: className, link, type = 'page', ...props } = Astro.props
+---
+
+<article
+  class:list={[
+    'font-article prose prose-zinc prose-p:text-lg prose-p:leading-snug prose-a:no-underline hover:prose-a:underline',
+    { 'prose-h1:font-body prose-h1:mb-2': type === 'page' },
+    { 'prose-h2:font-body prose-h2:mb-1 prose-h2:mt-0': type === 'card' },
+    className
+  ]}
+  ,
+  {...props}
+>
+  <hgroup>
+    {
+      /** Heading */
+      type === 'card' ? (
+        <h2>
+          <a class='!font-bold' href={link || '#'}>
+            {title}
+          </a>
+        </h2>
+      ) : (
+        <h1>{title}</h1>
+      )
+    }<slot name='header' />
+  </hgroup>
+  <slot />
+</article>

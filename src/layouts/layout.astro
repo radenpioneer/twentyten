@@ -1,0 +1,47 @@
+---
+import BaseLayout, { type Props as BaseLayoutProps } from './base.astro'
+import SEO, { type Props as SEOProps } from '~/components/seo.astro'
+import Header, { type Props as HeaderProps } from '~/components/header.astro'
+import Footer from '~/components/footer.astro'
+import { getEntry } from 'astro:content'
+import { getImage } from 'astro:assets'
+import '@fontsource-variable/inter'
+
+export interface Props
+  extends Omit<SEOProps, 'site'>,
+    Omit<HeaderProps, 'site'>,
+    Omit<BaseLayoutProps, 'title'> {}
+
+const site = await getEntry('site', 'site')
+const { title, description, image, lang, ...props } = Astro.props
+const preloadHeaderImage = await getImage({
+  src: site.data.image,
+  widths: [412, 736, 992],
+  sizes: '(min-width: 768px) 992px, (min-width: 640px) 736px, 412px',
+  format: 'avif'
+})
+---
+
+<BaseLayout
+  class='font-body flex min-h-screen flex-col bg-zinc-200 text-zinc-950 lg:py-8'
+  lang={lang || site.data.lang}
+  {...props}
+>
+  {/* body */}
+  <Header site={site} image={image} />
+  <slot />
+  <Footer site={site} />
+
+  {/* head */}
+  <Fragment slot='head'>
+    <SEO title={title} description={description} site={site} />
+    <link
+      rel='preload'
+      as='image'
+      href={preloadHeaderImage.src}
+      imagesrcset={preloadHeaderImage.srcSet.attribute}
+      imagesizes={preloadHeaderImage.attributes.sizes}
+    />
+    <slot name='head' />
+  </Fragment>
+</BaseLayout>

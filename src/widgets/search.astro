@@ -1,0 +1,10 @@
+---
+import SearchBar from './search'
+export interface Props {
+  value?: string | undefined
+}
+
+const { value } = Astro.props
+---
+
+<SearchBar value={value} client:idle />

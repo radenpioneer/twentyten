@@ -1,0 +1,12 @@
+---
+import ErrorLayout, {
+  type Props as ErrorLayoutProps
+} from '~/layouts/error.astro'
+
+const error = {
+  title: '404 Not Found',
+  description: 'Halaman yang Anda cari tidak ditemukan.'
+} satisfies ErrorLayoutProps
+---
+
+<ErrorLayout {...error} />

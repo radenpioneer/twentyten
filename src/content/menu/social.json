@@ -1,0 +1,6 @@
+{
+  "$schema": "../../../.astro/collections/menu.schema.json",
+  "title": "Social",
+  "description": "Link Media Sosial",
+  "items": []
+}

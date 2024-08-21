@@ -1,0 +1,17 @@
+---
+import SingleColumnLayout, {
+  type Props as SingleColumnLayoutProps
+} from '~/layouts/single.astro'
+import Article from '~/components/article/article.astro'
+
+export interface Props
+  extends Required<Pick<SingleColumnLayoutProps, 'title' | 'description'>> {}
+
+const { title, description } = Astro.props
+---
+
+<SingleColumnLayout title={title} description={description}>
+  <Article title={title as string}>
+    <p>{description}</p>
+  </Article>
+</SingleColumnLayout>

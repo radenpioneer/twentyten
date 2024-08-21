@@ -1,0 +1,13 @@
+---
+import DoubleColumnLayout from '~/layouts/double.astro'
+import List from '~/components/list.astro'
+import { getCollection } from 'astro:content'
+
+const posts = await getCollection('posts', (post) => !post.data.draft)
+---
+
+<DoubleColumnLayout>
+  <section>
+    <List posts={posts} />
+  </section>
+</DoubleColumnLayout>

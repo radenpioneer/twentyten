@@ -1,0 +1,26 @@
+---
+import Muted, { type Props as MutedProps } from './muted.astro'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props extends MutedProps {
+  tags: CollectionEntry<'posts'>['data']['tags']
+}
+
+const { tags = [], ...props } = Astro.props
+---
+
+<Muted {...props}>
+  Tag:{' '}
+  <Fragment>
+    {
+      tags.map((tag, _i, arr) => (
+        <>
+          <a class='underline' href={`/tags/${tag.slug}`}>
+            {tag.name}
+          </a>
+          {_i < arr.length - 1 && '/'}
+        </>
+      ))
+    }
+  </Fragment>
+</Muted>

@@ -1,0 +1,20 @@
+---
+import Layout, { type Props as LayoutProps } from './layout.astro'
+import Main from '../components/main.astro'
+
+export interface Props extends LayoutProps {}
+
+const { ...props } = Astro.props
+---
+
+<Layout {...props}>
+  {/* body */}
+  <Main>
+    <slot />
+  </Main>
+
+  {/* head */}
+  <Fragment slot='head'>
+    <slot name='head' />
+  </Fragment>
+</Layout>

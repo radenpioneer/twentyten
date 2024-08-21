@@ -1,0 +1,18 @@
+image: gitpod/workspace-full
+
+tasks:
+  - init: npm ci
+    command: npm run dev
+
+ports:
+  - port: 4321
+
+vscode:
+  extensions:
+    - astro-build.astro-vscode
+    - sourcegraph.cody-ai
+    - bradlc.vscode-tailwindcss
+    - mhutchie.git-graph
+    - github.vscode-github-actions
+    - astro-build.houston
+    - tamasfe.even-better-toml

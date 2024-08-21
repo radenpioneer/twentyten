@@ -1,0 +1,23 @@
+---
+import type { GetStaticPaths } from 'astro'
+import SingleColumnLayout from '~/layouts/single.astro'
+import Article from '~/components/article/article.astro'
+import { getCollection } from 'astro:content'
+
+export const getStaticPaths = (async () => {
+  const pages = await getCollection('pages')
+  return pages.map((page) => ({
+    params: { page: page.slug },
+    props: { page }
+  }))
+}) satisfies GetStaticPaths
+
+const { page } = Astro.props
+const { Content } = await page.render()
+---
+
+<SingleColumnLayout title={page.data.title} description={page.data.description}>
+  <Article title={page.data.title} class='mx-auto'>
+    <Content />
+  </Article>
+</SingleColumnLayout>

@@ -1,0 +1,31 @@
+{
+  "$schema": "../../../.astro/collections/menu.schema.json",
+  "title": "Footer",
+  "description": "Menu untuk ditampilkan pada footer situs.",
+  "items": [
+    {
+      "discriminant": "page",
+      "value": "blogroll"
+    },
+    {
+      "discriminant": "page",
+      "value": "kebijakan-privasi"
+    },
+    {
+      "discriminant": "link",
+      "value": {
+        "title": "Github",
+        "url": "https://github.com/radenpioneer/sngr.my.id",
+        "icon": "~/assets/menu/footer/items/2/value/icon.svg"
+      }
+    },
+    {
+      "discriminant": "link",
+      "value": {
+        "title": "RSS",
+        "url": "/rss.xml",
+        "icon": "~/assets/menu/footer/items/3/value/icon.svg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+---
+import type { GetStaticPaths } from 'astro'
+import DoubleColumnLayout, {
+  type Props as DoubleColumnLayoutProps
+} from '~/layouts/double.astro'
+import List from '~/components/list.astro'
+import { getCollection } from 'astro:content'
+
+export const getStaticPaths = (async () => {
+  const allPosts = await getCollection('posts', (post) => !post.data.draft)
+  const allTags = [
+    ...new Set(allPosts.map((post) => post.data.tags || []).flat())
+  ]
+  return allTags.map((tag) => {
+    const posts = allPosts.filter((post) => post.data.tags?.includes(tag))
+    return {
+      params: { tag: tag.slug },
+      props: { tag, posts }
+    }
+  })
+}) satisfies GetStaticPaths
+
+const { tag, posts } = Astro.props
+const page = {
+  title: `Arsip Tag: ${tag.name}`,
+  description: `Kumpulan artikel di blog ini dengan tag: ${tag.name}`
+} satisfies DoubleColumnLayoutProps
+---
+
+<DoubleColumnLayout {...page}>
+  <section class='sm:border-t-4 sm:border-zinc-950 sm:pt-2'>
+    <h1 class='mb-8 text-lg font-bold'>
+      Arsip Tag: <span class='font-serif italic'>{tag.name}</span>
+    </h1>
+    <List posts={posts} />
+  </section>
+</DoubleColumnLayout>

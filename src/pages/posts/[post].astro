@@ -1,0 +1,66 @@
+---
+import type { GetStaticPaths } from 'astro'
+import DoubleColumnLayout from '~/layouts/double.astro'
+import Article from '~/components/article/article.astro'
+import ArticleDate from '~/components/article/date.astro'
+import ArticleTags from '~/components/article/tags.astro'
+import { getCollection } from 'astro:content'
+import { getImage } from 'astro:assets'
+import { getCleanExcerpt } from '~/utils/excerpt'
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('posts', (post) => !post.data.draft)
+  return posts.map((post) => ({
+    params: { post: post.slug },
+    props: { post }
+  }))
+}) satisfies GetStaticPaths
+
+const { post } = Astro.props
+const { Content } = await post.render()
+
+const preloadHeaderImage = post.data.image
+  ? await getImage({
+      src: post.data.image,
+      widths: [412, 736, 992],
+      sizes: '(min-width: 768px) 992px, (min-width: 640px) 736px, 412px',
+      format: 'avif'
+    })
+  : undefined
+---
+
+<DoubleColumnLayout
+  title={post.data.title}
+  description={post.data.description || getCleanExcerpt(post.body)}
+  image={post.data.image}
+  lang={post.data.lang}
+>
+  <Article title={post.data.title} class='min-h-full max-w-none'>
+    {/* header */}
+    <Fragment slot='header'>
+      <div class='not-prose mb-2 text-xl italic md:text-2xl'>
+        {post.data.subtitle}
+      </div>
+      <ArticleDate date={post.data.date} link={`/posts/${post.slug}`} />
+    </Fragment>
+
+    {/* content */}
+    <Content />
+    <ArticleTags tags={post.data.tags} class='mt-auto' />
+  </Article>
+
+  {/* head */}
+  <Fragment slot='head'>
+    {
+      preloadHeaderImage && (
+        <link
+          rel='preload'
+          as='image'
+          href={preloadHeaderImage.src}
+          imagesrcset={preloadHeaderImage.srcSet.attribute}
+          imagesizes={preloadHeaderImage.attributes.sizes}
+        />
+      )
+    }
+  </Fragment>
+</DoubleColumnLayout>

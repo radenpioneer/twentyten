@@ -1,0 +1,26 @@
+---
+import Muted, { type Props as MutedProps } from './muted.astro'
+
+interface Props extends MutedProps {
+  date: Date
+  link: string
+}
+
+const { date, link, ...props } = Astro.props
+---
+
+<Muted {...props}>
+  Diterbitkan pada tanggal <a
+    class='hover:cursor-pointer hover:underline'
+    href={link}
+  >
+    <time datetime={date.toISOString()}>
+      {
+        date.toLocaleDateString('id', {
+          dateStyle: 'long',
+          calendar: 'islamic'
+        })
+      }
+    </time>
+  </a>
+</Muted>

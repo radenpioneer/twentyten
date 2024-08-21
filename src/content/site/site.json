@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../.astro/collections/site.schema.json",
+  "title": "R. Ilham Sastronegoro",
+  "slogan": "menulislah, kelak dunia akan menulismu.",
+  "description": "Blog pribadi R. Ilham Sastronegoro, berisi catatan dan tulisan non-work-related. Ditulis menggunakan Bahasa Indonesia.",
+  "lang": "id",
+  "image": "~/assets/site/image.png",
+  "favicon": "/favicon.svg"
+}

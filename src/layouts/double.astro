@@ -1,0 +1,30 @@
+---
+import Layout, { type Props as LayoutProps } from './layout.astro'
+import Main from '../components/main.astro'
+import Widgets from '~/widgets/widgets.astro'
+
+export interface Props extends LayoutProps {}
+
+const { ...props } = Astro.props
+---
+
+<Layout {...props}>
+  {/* body */}
+  <Main class='grid gap-4 md:grid-cols-3'>
+    <div class='md:col-span-2'>
+      <slot />
+    </div>
+
+    {/* sidebar */}
+    <aside class='flex flex-col gap-4 *:w-full'>
+      <hr class='border-2 border-zinc-500 sm:hidden' />
+      <Widgets />
+      <slot name='aside' />
+    </aside>
+  </Main>
+
+  {/* head */}
+  <Fragment slot='head'>
+    <slot name='head' />
+  </Fragment>
+</Layout>

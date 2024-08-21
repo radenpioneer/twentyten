@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../.astro/collections/menu.schema.json",
+  "title": "Utama",
+  "description": "Menu untuk ditampilkan pada header situs.",
+  "items": [
+    {
+      "discriminant": "link",
+      "value": {
+        "title": "Beranda",
+        "url": "/"
+      }
+    },
+    {
+      "discriminant": "page",
+      "value": "about"
+    },
+    {
+      "discriminant": "link",
+      "value": {
+        "title": "Work with me",
+        "url": "https://sngr.xyz/"
+      }
+    }
+  ]
+}

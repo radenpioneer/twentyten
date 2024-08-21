@@ -1,0 +1,62 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { Picture } from 'astro:assets'
+import { getEntry } from 'astro:content'
+import { transformMenu } from '~/utils/menu'
+
+export interface Props {
+  site: CollectionEntry<'site'>
+  image?: CollectionEntry<'site'>['data']['image'] | undefined
+}
+
+const { site, image } = Astro.props
+const menuData = await getEntry('menu', 'utama')
+const menu = await transformMenu(menuData)
+---
+
+<nav class='mx-auto w-full bg-zinc-50 px-4 py-4 [max-width:1024px]'>
+  <div
+    class='mb-4 flex flex-col justify-between gap-y-1 md:flex-row md:items-center'
+  >
+    <a class='text-xl font-black md:text-2xl' href='/'>{site.data.title}</a>
+    <div class='font-serif text-sm italic text-zinc-600'>
+      {site.data.slogan}
+    </div>
+  </div>
+  <div class='-mx-4 sm:mx-0'>
+    <Picture
+      class='aspect-[1500/500] w-full border-y-4 border-zinc-950 object-cover object-center'
+      src={image || site.data.image}
+      width={1500}
+      height={500}
+      widths={[412, 736, 992]}
+      formats={['avif', 'webp']}
+      sizes='(min-width: 768px) 992px, (min-width: 640px) 736px, 412px'
+      loading='eager'
+      alt=''
+    />
+    {
+      (
+        <ul class='flex border-b-4 border-zinc-950 bg-zinc-950 px-4 text-zinc-400'>
+          {menu.map(async (item) => {
+            return (
+              <li
+                class:list={[
+                  'px-2 py-1 text-sm hover:bg-zinc-700 md:text-base',
+                  { 'text-zinc-100': item.url === Astro.url.pathname }
+                ]}
+              >
+                <a
+                  href={item.url}
+                  target={item.url.startsWith('https://') ? '_blank' : '_self'}
+                >
+                  {item.title}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      )
+    }
+  </div>
+</nav>

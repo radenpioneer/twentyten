@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+export interface Props extends HTMLAttributes<'div'> {}
+
+const { class: className, ...props } = Astro.props
+---
+
+<div
+  class:list={['not-prose font-sans text-sm italic text-zinc-600', className]}
+  {...props}
+>
+  <slot />
+</div>
