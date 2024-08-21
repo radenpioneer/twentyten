@@ -4,10 +4,7 @@
       "staticDistDir": "./dist"
     },
     "assert": {
-      "preset": "lighthouse:recommended",
-      "assertions": {
-        "unused-javascript": "warn"
-      }
+      "preset": "lighthouse:recommended"
     }
   }
 }
