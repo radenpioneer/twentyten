@@ -1,7 +1,9 @@
 ---
 title: Hello World!
 date: 2008-06-04
-tags: []
+tags:
+  - name: Uncategorized
+    slug: uncategorized
 lang: en
 draft: false
 ---

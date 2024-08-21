@@ -33,7 +33,7 @@ export const prerender = false
 
 <DoubleColumnLayout {...page}>
   <Article title={page.title} class='mx-auto prose-h1:mb-4'>
-    {(query && result.length > 0) && <Result query={query} result={result} />}
-    {(result.length <= 0) && <NoResult query={query || ''} />}
+    {query && result.length > 0 && <Result query={query} result={result} />}
+    {result.length <= 0 && <NoResult query={query || ''} />}
   </Article>
 </DoubleColumnLayout>

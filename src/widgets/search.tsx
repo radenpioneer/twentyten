@@ -8,7 +8,7 @@ const SearchBar: FC<SearchProps> = ({ value }) => {
     <form className='flex gap-1 font-sans' action='/search' method='get'>
       <input
         type='search'
-        className='flex-1 min-w-0'
+        className='min-w-0 flex-1'
         name='q'
         id='searchBar'
         value={searchValue}
@@ -17,7 +17,7 @@ const SearchBar: FC<SearchProps> = ({ value }) => {
       />
       <button
         type='submit'
-        className='bg-zinc-400 disabled:opacity-[.5] px-4'
+        className='bg-zinc-400 px-4 disabled:opacity-[.5]'
         disabled={!searchValue}
       >
         Search
