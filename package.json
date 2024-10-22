@@ -19,15 +19,15 @@
   "dependencies": {
     "@astrojs/cloudflare": "11.0.4",
     "@astrojs/react": "3.6.2",
-    "@astrojs/rss": "4.0.7",
-    "@astrojs/sitemap": "3.1.6",
-    "@astrojs/tailwind": "5.1.0",
+    "@astrojs/rss": "4.0.9",
+    "@astrojs/sitemap": "3.2.1",
+    "@astrojs/tailwind": "5.1.2",
     "@fontsource-variable/crimson-pro": "5.0.20",
     "@fontsource-variable/inter": "5.0.20",
     "@fontsource-variable/lora": "5.0.19",
     "@keystatic/astro": "5.0.0",
     "@keystatic/core": "0.5.32",
-    "astro": "4.14.2",
+    "astro": "4.16.7",
     "fuse.js": "7.0.0"
   },
   "devDependencies": {
